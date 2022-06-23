@@ -38,7 +38,7 @@ echo " HOST"
 #-------------------------------------------------------
  echo " DIG "
  echo " A records "
- dig $Target
+ dig $Target  +nocomments
 
  space
 #-------------------------------------------------------
@@ -49,7 +49,16 @@ echo " HOST"
  
  space
 #-------------------------------------------------------
- echo " WHATWEB "
+ echo " Wafw00f "
+ echo " "
+ echo "------------------"
+ wafw00f -a $Target -v
+ echo "------------------"
+
+space
+
+#-------------------------------------------------------
+echo " WHATWEB "
  echo "HTTPS"
  echo "------------------"
  whatweb -a3 $Target -v
