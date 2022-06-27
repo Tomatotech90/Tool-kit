@@ -14,7 +14,7 @@
  
  }
  
- echo " HOST "
+ echo "  welcome ^_^  "
  
  echo "what is the target: "
  
