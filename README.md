@@ -1,5 +1,5 @@
 # Pentest Tools
-bash commands to improve in teh work in pentest or ctf.
+scripts to improve in teh work in pentest or ctf.
 
 -------------------------------------------------------------------
 Bloodhound   -the script will search for DNS records, waw00f and whatweb, by deafault is basic mode(records A,MX or TXT)
