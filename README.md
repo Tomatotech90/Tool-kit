@@ -1,5 +1,5 @@
 # Pentest Tools
-scripts to improve in the work in pentest or ctf.
+scripts that can help in a CTF or basic pentesting.
 
 -------------------------------------------------------------------
 Bloodhound   -the script will search for DNS records, waw00f and whatweb, by deafault is basic mode(records A,MX or TXT)
