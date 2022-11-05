@@ -1,7 +1,8 @@
 # Pentest Tools
 scripts that can help in a CTF or basic pentesting.
 
--------------------------------------------------------------------'
+-----------------------------------------------------------------------------------------------------------------------
+
 |  Scripts     |        Defenitions                                                                                    |
 | ------------ |:------------------------------------------------------------------------------------------------------|
 | Bloodhound   |-the script will search for DNS records, waw00f and whatweb, by deafault is basic mode(records A,MX or    |              |TXT)
