@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Nmap recon
-#interact script is base ont eh results
+#interact script is base on the results
 #feel free to change the script
 #-----------------------------------------------------------------------------------
 
