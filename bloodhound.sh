@@ -1,6 +1,6 @@
 #!/bin/bash
 #this script will search the records of a website using 
-#host, dig, whois, nslookup, and whatweb
+#host, dig, whois, nslookup, dnsrecon and whatweb
 
 #HOST
  
@@ -42,12 +42,19 @@ echo " HOST"
 
  space
 #-------------------------------------------------------
- echo " NSLOOKUP"
+ echo " NSLOOKUP "
  echo " "
  
  nslookup -query=afxr $Target
  
  space
+#-------------------------------------------------------
+echo " DNSRECON "
+echo " "
+
+dnsrecon -d $Target
+
+space
 #-------------------------------------------------------
  echo " Wafw00f "
  echo " "
