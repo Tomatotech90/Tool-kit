@@ -70,5 +70,11 @@ echo " WHATWEB "
  echo "------------------"
  whatweb -a3 $Target -v
  echo "------------------"
- 
+ #-----------------------------------------------------
+ echo "recon dns and subdomains using fierce"
+ echo " "
+ echo "Note: youcan stop here if you dont want to peforme brute force"
+ echo " "
+ fierce --domains $Target
+ space
  echo " DONE "
