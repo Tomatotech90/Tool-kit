@@ -18,5 +18,6 @@ scripts that can help in a CTF or basic pentesting.
 |Rate_limit_checker| -by HTB, check the limit of web application(brute force).                                          |
 |              |                                                                                                        |
 |nm4p_IDSFrecon| -script that use nmap to avoid IDS and Firewalls.                                                      |
-
+|              |                                                                                                        |
+|nm4p_HTTPenum | -script that use nmap to scan for directories on php.                                                  |
 
