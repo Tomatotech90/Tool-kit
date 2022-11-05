@@ -16,6 +16,7 @@ scripts that can help in a CTF or basic pentesting.
 | Port_CK      |  - simple script that check for open ports in the host machine, using nestat,ss,lsof and nmap.         |
 |              |
 |Rate_limit_checker| -by HTB, check the limit of web application(brute force).                                          |
-
+|              |                                                                                                        |
+|nm4p_IDSFrecon| -script that use nmap to avoid IDS and Firewalls.                                                      |
 
 
