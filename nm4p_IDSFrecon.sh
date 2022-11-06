@@ -26,6 +26,15 @@
  sudo nmap -sS -sV  -D RND: $Target
 
  echo " "
+ #---------------------------------------------------------------------------------
+ 
+echo " "
+echo "Nmap using scritp firewalk"
+
+nmap -sS --script=firewalk --traceroute $Target
+
+echo " "
+ 
 #----------------------------------------------------------------------------------
 #the mtu is the size of the package, base on 8,16....
  echo "fragment teh packages"
@@ -33,7 +42,7 @@
 
  read size
 
-  sudo nmap -sS -sV --mtu $size -D  $Target
+  sudo nmap -sS -sV -F --mtu $size -D  $Target
 
  echo " "
 #------------------------------------------------------------------------------------
