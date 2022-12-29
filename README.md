@@ -20,4 +20,5 @@ scripts that can help in a CTF or basic pentesting.
 |nm4p_IDSFrecon| -script that use nmap to avoid IDS and Firewalls.                                                      |
 |              |                                                                                                        |
 |nm4p_HTTPenum | -script that use nmap to scan for directories on php.                                                  |
-
+|              |                                                                                                        |
+|Re4shell.sh   | -easy resevershell.                                                                                    |
