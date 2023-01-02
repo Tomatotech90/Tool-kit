@@ -11,7 +11,7 @@ scripts that can help in a CTF or basic pentesting.
 |              |
 | Enumeration  | - enumerate WP websites, checking for version, index, plugs, and themes. (directory index base on plugs) | [curl]       |
 |              |                                                                                                        |
-| search.sh    | -a script that help to find any info using locate, which, and whereis.                                 |
+| search       | -a script that help to find any info using locate, which, and whereis.                                 |
 |              |                                                                                                        |
 | Port_CK      |  - simple script that check for open ports in the host machine, using nestat,ss,lsof and nmap.         |
 |              |
@@ -21,4 +21,7 @@ scripts that can help in a CTF or basic pentesting.
 |              |                                                                                                        |
 |nm4p_HTTPenum | -script that use nmap to scan for directories on php.                                                  |
 |              |                                                                                                        |
-|Re4shell.sh   | -easy resevershell.                                                                                    |
+|Re4shell      | -easy resevershell.                                                                                    |
+|              |                                                                                                        |
+|meta          | -check for metadata mnipulation.                                                                       |
+|              |                                                                                                        |
