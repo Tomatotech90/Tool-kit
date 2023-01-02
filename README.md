@@ -25,3 +25,5 @@ scripts that can help in a CTF or basic pentesting.
 |              |                                                                                                        |
 |meta          | -check for metadata mnipulation.                                                                       |
 |              |                                                                                                        |
+|network_discovery| -  simple bash script that can be used to discover the CIDR and range of a network.                 |
+|              |                                                                                                        |
