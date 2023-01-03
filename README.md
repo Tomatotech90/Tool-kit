@@ -27,3 +27,5 @@ scripts that can help in a CTF or basic pentesting.
 |              |                                                                                                        |
 |network_discovery| -  simple bash script that can be used to discover the CIDR and range of a network.                 |
 |              |                                                                                                        |
+|pivilege_chk  | -check for basic privilege escalation.                                                                 |
+|              |                                                                                                        |
