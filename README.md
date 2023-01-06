@@ -29,3 +29,5 @@ scripts that can help in a CTF or basic pentesting.
 |              |                                                                                                        |
 |pivilege_chk  | -check for basic privilege escalation.                                                                 |
 |              |                                                                                                        |
+|exploitdb     | -easyway to find vuln,using nmap,searchsploit and metasploit.                                          |
+|              |                                                                                                        |
