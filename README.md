@@ -1,6 +1,9 @@
 # Pentest Tools
 scripts that can help in a CTF or basic pentesting.
 
+Directories : API - basic api recom.
+
+
 -----------------------------------------------------------------------------------------------------------------------
 
 |  Scripts     |        Defenitions                                                                                    |
@@ -30,4 +33,6 @@ scripts that can help in a CTF or basic pentesting.
 |pivilege_chk  | -check for basic privilege escalation.                                                                 |
 |              |                                                                                                        |
 |exploitdb     | -easyway to find vuln,using nmap,searchsploit and metasploit.                                          |
+|              |                                                                                                        |
+|Lynis_basicrun| basic lynis script that will do a security task.                                                       |
 |              |                                                                                                        |
