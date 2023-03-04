@@ -36,3 +36,5 @@ Directories : API - basic api recom.
 |              |                                                                                                        |
 |Lynis_basicrun| basic lynis script that will do a security task.                                                       |
 |              |                                                                                                        |
+|Nm4p_Bas1c    | -script that make a basic nmap scna using the follow flags -SCV, -Pn (optional) and -oA for report     |
+|              |                                                                                                        |
