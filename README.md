@@ -1,7 +1,7 @@
 # Pentest Tools
 scripts that can help in a CTF or basic pentesting.
 
-Directories : API - basic api recom.
+Directories : API - basic api recon.
 
 
 -----------------------------------------------------------------------------------------------------------------------
