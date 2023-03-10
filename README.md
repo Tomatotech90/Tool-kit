@@ -30,7 +30,7 @@ Directories : API - basic api recon.
 |              |                                                                                                        |
 |network_discovery| -  simple bash script that can be used to discover the CIDR and range of a network.                 |
 |              |                                                                                                        |
-|pivilege_chk  | -check for basic privilege escalation.                                                                 |
+|privilege_chk  | -check for basic privilege escalation.                                                                 |
 |              |                                                                                                        |
 |exploitdb     | -easyway to find vuln,using nmap,searchsploit and metasploit.                                          |
 |              |                                                                                                        |
