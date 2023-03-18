@@ -11,7 +11,5 @@
 |              |                                                                                                       |
 |1check_group_permissions|-This script checks for excessive permissions in groups and users, misconfigured permissions in administrators, and provides recommendations for reducing exposure to potential attacks.|
 |               |                                                                                                      |
-|2check_group_permissions| - new version: This updated script checks for misconfigured permissions in the local Administrators group, checks if any users have the SeDebugPrivilege privilege enabled, and checks for any misconfigured permissions on network shares.
-
-To optimize the script, I have used more specific cmdlets and optimized the filters used to gather information.|
+|2check_group_permissions| - new version: This updated script checks for misconfigured permissions in the local Administrators group, checks if any users have the SeDebugPrivilege privilege enabled, and checks for any misconfigured permissions on network shares. To optimize the script, I have used more specific cmdlets and optimized the filters used to gather information.|
 |              |                                                                                                       |
