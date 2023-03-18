@@ -2,6 +2,7 @@
 scripts that can help in a CTF or basic pentesting.
 
 Directories : API - basic api recon.
+              Windows - PowerShell scripts.
 
 
 -----------------------------------------------------------------------------------------------------------------------
