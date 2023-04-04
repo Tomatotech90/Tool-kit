@@ -10,93 +10,105 @@ echo " *************************************************************************
 echo " * if you have a directory in specific file close essential.sh and run in that directory * "
 echo " ***************************************************************************************** "
 
-cd $HOME/Desktop 
+# Check whether the user has root privileges
+if [ $(id -u) -ne 0 ]; then
+    echo "Error: this script must be run as root"
+    exit 1
+fi
 
-mkdir  essentials
-mkdir  /essentals/core
+# Create the "essentials" and "core" directories
+echo "Setting up directories..."
+mkdir -p $HOME/Desktop/essentials/core
+if [ $? -ne 0 ]; then
+    echo "Error: unable to create directory $HOME/Desktop/essentials/core"
+    exit 1
+fi
 
-echo -e "Installling essentials" 
+# Update the package repository and install essential packages
+echo "Installing essential packages..."
 apt-get update
-apt-get install -y build-essential
-apt-get install -y gcc 
-apt-get install -y git
-apt-get install -y vim 
-apt-get install -y wget 
-apt-get install -y curl
-apt-get install -y awscli
-apt-get install -y inetutils-ping 
-apt-get install -y make 
-apt-get install -y nmap 
-apt-get install -y whois 
-apt-get install -y python3
-apt-get install -y python-pip 
-apt-get install -y perl 
-apt-get install -y nikto
-apt-get install -y dnsutils 
-apt-get install -y net-tools
-apt-get install -y zsh
-apt-get install -y nano
-apt-get install -y tmux
-apt-get install -y html2text
-apt-get install -y terminator
+apt-get install -y build-essential gcc git vim wget curl awscli inetutils-ping make nmap whois python3 python-pip perl nikto dnsutils net-tools zsh nano tmux html2text terminator
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install essential packages"
+    exit 1
+fi
 
-
-# Sublist3r
-echo -e "Installing Sublist3r"
-cd $HOME/Desktop/essentials 
+# Install additional tools using git and pip
+echo "Installing Sublist3r..."
+cd $HOME/Desktop/essentials
 git clone https://github.com/aboul3la/Sublist3r.git
 cd Sublist3r/
 pip install -r requirements.txt
-ln -s essentials/Sublist3r/sublist3r.py /usr/local/bin/sublist3r
+ln -s $HOME/Desktop/essentials/Sublist3r/sublist3r.py /usr/local/bin/sublist3r
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install Sublist3r"
+    exit 1
+fi
 
-# Recon-ng
-echo -e "Installing Recon-ng"
-cd  $HOME/Desktop/essentials 
-git clone https://github.com/lanmaster53/recon-ng.git 
-cd recon-ng 
-apt-get install -y python3-pip 
-pip3 install -r REQUIREMENTS 
-chmod +x recon-ng 
-ln -sf essentials/recon-ng/recon-ng /usr/local/bin/recon-ng
+echo "Installing Recon-ng..."
+cd $HOME/Desktop/essentials
+git clone https://github.com/lanmaster53/recon-ng.git
+cd recon-ng
+apt-get install -y python3-pip
+pip3 install -r REQUIREMENTS
+chmod +x recon-ng
+ln -sf $HOME/Desktop/essentials/recon-ng/recon-ng /usr/local/bin/recon-ng
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install Recon-ng"
+    exit 1
+fi
 
-# XSStrike
-echo -e "Installing XSStrike"
-cd  $HOME/Desktop/essentials
-git clone https://github.com/s0md3v/XSStrike.git 
-cd XSStrike 
-apt-get install -y python3-pip 
-pip3 install -r requirements.txt 
+echo "Installing XSStrike..."
+cd $HOME/Desktop/essentials
+git clone https://github.com/s0md3v/XSStrike.git
+cd XSStrike
+apt-get install -y python3-pip
+pip3 install -r requirements.txt
 chmod +x xsstrike.py
-ln -sf essentials/XSStrike/xsstrike.py /usr/local/bin/xsstrike
+ln -sf $HOME/Desktop/essentials/XSStrike/xsstrike.py /usr/local/bin/xsstrike
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install XSStrike"
+    exit 1
+fi
 
-# whatweb
-echo -e " Installing whatweb"
-cd  $HOME/Desktop/essentials
+echo "Installing whatweb..."
+cd $HOME/Desktop/essentials
 git clone https://github.com/urbanadventurer/WhatWeb.git
 cd WhatWeb
 chmod +x whatweb
-ln -sf  essentials/WhatWeb/whatweb /usr/local/bin/whatweb
+ln -sf $HOME/Desktop/essentials/WhatWeb/whatweb /usr/local/bin/whatweb
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install whatweb"
+    exit 1
+fi
 
-# fierce
-echo -e "Installing fierce"
+echo "Installing fierce..."
 python3 -m pip install fierce
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install fierce"
+    exit 1
+fi
 
-# amass
-echo -e "Installing amass"
+echo "Installing amass..."
 export GO111MODULE=on
 go get -v github.com/OWASP/Amass/v3/...
+if [ $? -ne 0 ]; then
+    echo "Error: unable to install amass"
+    exit 1
+fi
 
-# ffuf
-echo -e "Installing ffuf"
+echo "Installing ffuf..."
 go get -u github.com/ffuf/ffuf
-
-
-# SecLists
-read -p "Do you want to download SecLists? y/n " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    echo -e "Downloading SecLists"
-    cd  $HOME/Desktop/essentials/wordlists
-    git clone --depth 1 https://github.com/danielmiessler/SecLists.git
+if [ $? -ne 0 ]; then
+echo "Error: unable to install ffuf"
+exit 1
+read -p "Do you want to download SecLists? (y/n) " answer
+if [[ $answer == [yY] ]]; then
+echo "Downloading SecLists..."
+cd $HOME/Desktop/essentials/core
+git clone --depth 1 https://github.com/danielmiessler/SecLists.git
+if [ $? -ne 0 ]; then
+echo "Error: unable to download SecLists"
+exit 1
+fi
 fi
