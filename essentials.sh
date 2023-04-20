@@ -97,18 +97,23 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# ...
+
 echo "Installing ffuf..."
 go get -u github.com/ffuf/ffuf
 if [ $? -ne 0 ]; then
-echo "Error: unable to install ffuf"
-exit 1
+    echo "Error: unable to install ffuf"
+    exit 1
+fi
+
 read -p "Do you want to download SecLists? (y/n) " answer
 if [[ $answer == [yY] ]]; then
-echo "Downloading SecLists..."
-cd $HOME/Desktop/essentials/core
-git clone --depth 1 https://github.com/danielmiessler/SecLists.git
-if [ $? -ne 0 ]; then
-echo "Error: unable to download SecLists"
-exit 1
+    echo "Downloading SecLists..."
+    cd $HOME/Desktop/essentials/core
+    git clone --depth 1 https://github.com/danielmiessler/SecLists.git
+    if [ $? -ne 0 ]; then
+        echo "Error: unable to download SecLists"
+        exit 1
+    fi
 fi
-fi
+
