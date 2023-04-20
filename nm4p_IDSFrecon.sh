@@ -1,64 +1,67 @@
 #!/bin/bash
 
-#Nmap recon
-#interact script is base on the results
-#feel free to change the script
-#-----------------------------------------------------------------------------------
+# Nmap recon
+# Interact script is based on the results
+# Feel free to change the script
+# -----------------------------------------------------------------------------------
 
- echo "First check who is in the other side"
+echo "First check who is on the other side"
 
- echo " Target Ip: "
- read Target
+echo -n "Target IP: "
+read Target
 
- echo " Wafw00f "
- echo " "
- echo "------------------"
- wafw00f -a $Target -v
- echo "------------------"
+echo "Wafw00f"
+echo
+echo "------------------"
+wafw00f -a $Target -v
+echo "------------------"
 
-#-----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
- echo "Nmap scanning"
- echo " using D (decoy) and RND (random) "
- echo " "
-#changet the flags if you have a decoy
-#you can choo how many random ips exam: RND:#
- sudo nmap -sS -sV  -D RND: $Target
+echo "Nmap scanning"
+echo "Using D (decoy) and RND (random)"
+echo
 
- echo " "
- #---------------------------------------------------------------------------------
- 
-echo " "
-echo "Nmap using scritp firewalk"
+# Change the flags if you have a decoy
+# You can choose how many random IPs, e.g., RND:#
+sudo nmap -sS -sV -D RND: $Target
+
+echo
+
+# ---------------------------------------------------------------------------------
+
+echo "Nmap using script firewalk"
 
 nmap -sS --script=firewalk --traceroute $Target
 
-echo " "
- 
-#----------------------------------------------------------------------------------
-#the mtu is the size of the package, base on 8,16....
- echo "fragment teh packages"
- echo "the size of mtu: "
+echo
 
- read size
+# ----------------------------------------------------------------------------------
 
-  sudo nmap -sS -sV -F --mtu $size -D  $Target
+# The mtu is the size of the package, based on 8, 16, ...
+echo "Fragment the packages"
+echo -n "The size of mtu: "
 
- echo " "
-#------------------------------------------------------------------------------------
+read size
 
- echo " Banner "
- echo " "
- echo "will perform two commands, if you want you comment one "
- echo " "
- echo "the command is the following: sudo nmap -sS -sV  -D RND: $Target"
- echo " "
- echo "sudo nmap -sS -sV --mtu $size -D  $Target "
- 
- #base on the results you need to change this
- sudo nmap -F -T4 --script banner  -D RND: $Target
- echo " "
- echo " "
- sudo nmap -F -T4 --script banner --mtu $size -D  $Target
-  
- echo "Done"
+sudo nmap -sS -sV -F --mtu $size -D $Target
+
+echo
+
+# ------------------------------------------------------------------------------------
+
+echo "Banner"
+echo
+echo "Will perform two commands, if you want you can comment one"
+echo
+echo "The commands are the following:"
+echo "sudo nmap -sS -sV -D RND: $Target"
+echo "sudo nmap -sS -sV --mtu $size -D $Target"
+
+# Based on the results, you might need to change this
+sudo nmap -F -T4 --script banner -D RND: $Target
+echo
+echo
+sudo nmap -F -T4 --script banner --mtu $size -D $Target
+
+echo "Done"
