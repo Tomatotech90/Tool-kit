@@ -1,7 +1,6 @@
 # Tool Kit
 scripts that can help in a CTF or basic pentesting.
 
-![Toolbox](https://user-images.githubusercontent.com/96146875/234336291-bd273c9f-b6c8-4cd5-96fe-2acd737f237e.jpeg)
 
              
 Directories :
