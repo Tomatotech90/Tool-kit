@@ -1,5 +1,5 @@
 # Tool Kit
-scripts that can help in a CTF or basic pentesting.
+Tools that will help in a CTF's, Red Team operations, or Pentesting assessment.
 
 ![logo](https://user-images.githubusercontent.com/96146875/234340251-7165ccd5-d5c0-40d0-b671-52a105b795ee.png)
 
