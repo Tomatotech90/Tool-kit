@@ -50,7 +50,5 @@ Directories :
 |               |                                                                                                       |
 |LFI_Tra        | -Python script that checks a target web page for potential Local File Inclusion (LFI) and File Traversal vulnerabilities. It does this by sending requests to the target URL with different payloads, and trying to access sensitive files using various directory traversal patterns.|
 |               |                                                                                                       |
-| NmapWin       |- performs a network port scan and vulnerability assessment on a target system. It uses the Nmap tool to scan for open ports on the target, and then checks for vulnerabilities associated with each open port.
-
-The script also checks if the target is a Windows system and suggests potential vulnerabilities associated with common Windows services, such as RPC, NetBIOS, and SMB. It then uses the smbclient tool to connect to the SMB service and test for write access, as well as to download files from the service. |
+| NmapWin       |- performs a network port scan and vulnerability assessment on a target system. It uses the Nmap tool to scan for open ports on the target, and then checks for vulnerabilities associated with each open port.The script also checks if the target is a Windows system and suggests potential vulnerabilities associated with common Windows services, such as RPC, NetBIOS, and SMB. It then uses the smbclient tool to connect to the SMB service and test for write access, as well as to download files from the service. |
 |                |                                                                                                       |
