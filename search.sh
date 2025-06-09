@@ -1,65 +1,107 @@
 #!/bin/bash
 
-# A script that searches for files, directories, and binaries on the system using the locate, whereis, and which commands.
+# A script to search for files, directories, and binaries using locate, whereis, and which commands.
 
 # Define color codes
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-reset='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RESET='\033[0m'
 
 # Define separator function
 separator() {
-  echo -e "${green}\n--------------------------------------------------${reset}"
-  echo -e "${green}---------------------- $1 -----------------------${reset}"
-  echo -e "${green}--------------------------------------------------\n${reset}"
+  echo -e "${GREEN}\n--------------------------------------------------${reset}"
+  echo -e "${GREEN}---------------------- $1 -----------------------${reset}"
+  echo -e "${GREEN}--------------------------------------------------\n${reset}"
 }
 
-# Prompt the user for the name of the file, directory, or binary they're searching for
-echo -e "${yellow}What are you searching for?${reset}"
-read search_query
+# Function to check if a command is available
+check_command() {
+  if ! command -v "$1" &> /dev/null; then
+    echo -e "${RED}Error: '$1' command not found. Please install it to use this feature.${RESET}"
+    return 1
+  fi
+  return 0
+}
 
-# Use the locate command to search for the object
-separator "LOCATE"
-echo -e "${yellow}Searching for $search_query with locate...${reset}"
-locate_count=$(locate -c $search_query) # Store the number of results in a variable
-if [ $locate_count -eq 0 ]; then
-  echo -e "${red}No results found with locate.${reset}"
-else
-  echo -e "${green}Found $locate_count result(s) with locate:${reset}"
-  locate $search_query | less # Paginate the output with less
+# Check for required commands
+for cmd in locate whereis which; do
+  check_command "$cmd" || exit 1
+done
+
+# Prompt for search query with validation
+while true; do
+  echo -e "${YELLOW}What are you searching for? (Enter a file, directory, or binary name, or 'q' to quit)${RESET}"
+  read -r search_query
+  [[ "$search_query" == "q" ]] && exit 0
+  if [[ -z "$search_query" ]]; then
+    echo -e "${RED}Error: Search query cannot be empty. Please try again.${RESET}"
+  else
+    break
+  fi
+done
+
+# Update locate database if needed (optional, requires sudo)
+if [[ -n "$UPDATE_LOCATE" ]]; then
+  echo -e "${YELLOW}Updating locate database...${RESET}"
+  if sudo updatedb; then
+    echo -e "${GREEN}Locate database updated successfully.${RESET}"
+  else
+    echo -e "${RED}Failed to update locate database.${RESET}"
+  fi
 fi
 
-# Use the whereis command to search for the binary, source, and manual page files associated with the object
-separator "WHEREIS"
-echo -e "${yellow}Searching for $search_query with whereis...${reset}"
-whereis_result=$(whereis $search_query) # Store the result in a variable
-if [ -z "$whereis_result" ]; then
-  echo -e "${red}No results found with whereis.${reset}"
+# Use locate command to search
+separator "LOCATE"
+echo -e "${YELLOW}Searching for '$search_query' with locate...${RESET}"
+locate_count=$(locate -c "$search_query" 2>/dev/null)
+if [[ $? -ne 0 ]]; then
+  echo -e "${RED}Error running locate. Check if the database is accessible.${RESET}"
+elif [[ $locate_count -eq 0 ]]; then
+  echo -e "${RED}No results found with locate.${RESET}"
 else
-  echo -e "${green}Found the following result(s) with whereis:${reset}"
+  echo -e "${GREEN}Found $locate_count result(s) with locate:${RESET}"
+  locate "$search_query" | less
+fi
+
+# Use whereis command to search
+separator "WHEREIS"
+echo -e "${YELLOW}Searching for '$search_query' with whereis...${RESET}"
+whereis_result=$(whereis "$search_query" 2>/dev/null)
+if [[ $? -ne 0 ]] || [[ -z "$whereis_result" ]]; then
+  echo -e "${RED}No results found with whereis or an error occurred.${RESET}"
+else
+  echo -e "${GREEN}Found the following result(s) with whereis:${RESET}"
   echo "$whereis_result"
 fi
 
-# Use the which command to search for the binary file associated with the object
+# Use which command to search
 separator "WHICH"
-echo -e "${yellow}Searching for $search_query with which...${reset}"
-which_result=$(which $search_query) # Store the result in a variable
-if [ -z "$which_result" ]; then
-  echo -e "${red}No results found with which.${reset}"
+echo -e "${YELLOW}Searching for '$search_query' with which...${RESET}"
+which_result=$(which "$search_query" 2>/dev/null)
+if [[ $? -ne 0 ]] || [[ -z "$which_result" ]]; then
+  echo -e "${RED}No results found with which or an error occurred.${RESET}"
 else
-  echo -e "${green}Found the following result(s) with which:${reset}"
+  echo -e "${GREEN}Found the following result(s) with which:${RESET}"
   echo "$which_result"
 fi
 
-# Print a message indicating whether the searched object is a file, binary, or directory
+# Determine the type of the search query
 separator "DONE"
-if [ -d "$search_query" ]; then
-  echo -e "${green}$search_query is a directory.${reset}"
-elif [ -x "$search_query" ]; then
-  echo -e "${green}$search_query is a binary.${reset}"
-elif [ -f "$search_query" ]; then
-  echo -e "${green}$search_query is a file.${reset}"
+# Check if the result from 'which' or absolute path exists
+if [[ -n "$which_result" ]] && [[ -x "$which_result" ]]; then
+  echo -e "${GREEN}'$search_query' is an executable (binary).${RESET}"
+elif [[ -d "/$search_query" ]] || [[ -d "$search_query" ]]; then
+  echo -e "${GREEN}'$search_query' is a directory.${RESET}"
+elif [[ -f "/$search_query" ]] || [[ -f "$search_query" ]]; then
+  echo -e "${GREEN}'$search_query' is a file.${RESET}"
 else
-  echo -e "${red}Could not determine the type of $search_query.${reset}"
+  echo -e "${RED}Could not determine the type of '$search_query'.${RESET}"
+fi
+
+# Offer to search again
+echo -e "${YELLOW}\nWould you like to search again? (y/n)${RESET}"
+read -r response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  exec "$0"
 fi
